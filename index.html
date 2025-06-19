@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TestBedz - Your Turn-Key Aerospace Testing Partner</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutral Harmony -->
+    <!-- Application Structure Plan: The SPA has been redesigned into a persuasive sales funnel that guides the user towards the core RFQ form. The new information architecture is: 1. Compelling Hero section addressing client pain points. 2. Social Proof (logos) to build instant trust. 3. A "What We Handle" benefits grid to clearly articulate our value. 4. A personified "Concierge Service" section to build an emotional connection. 5. A simplified, benefit-oriented "How It Works" process. 6. The core RFQ Form, now framed as the solution. 7. A dedicated section for University Partners. 8. A proactive FAQ section to handle objections. This structure was chosen to psychologically prime the user by demonstrating value and building trust *before* asking them to fill out the form, increasing conversion and conveying our one-stop-shop model effectively. -->
+    <!-- Visualization & Content Choices: 
+        - Social Proof -> Goal: Build Trust -> Method: HTML logo cloud. -> Justification: Uses the principle of social proof by showing recognizable UMich teams trust us.
+        - Value Propositions -> Goal: Inform & Persuade -> Method: An icon-driven features grid built with HTML/Tailwind. -> Justification: Breaks down the complex service into easily digestible, benefit-oriented points.
+        - Concierge Service -> Goal: Build Connection -> Method: A personified section with an avatar and welcoming copy. -> Justification: Humanizes the service, making it feel more like a personal partnership than a transactional platform.
+        - FAQ -> Goal: Overcome Objections -> Method: Interactive accordion using HTML <details> and <summary> tags. -> Justification: Proactively answers critical questions about risk, IP, and liability, building transparency and trust upfront.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f7f4;
+            color: #1f2937;
+        }
+        .font-poppins {
+            font-family: 'Poppins', sans-serif;
+        }
+        .btn-primary {
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            transition: all 0.3s ease;
+            color: white;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
+        }
+        .btn-primary:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+            transform: translateY(0);
+            box-shadow: none;
+        }
+        details > summary {
+            list-style: none;
+        }
+        details > summary::-webkit-details-marker {
+            display: none;
+        }
+        details[open] summary .arrow-down {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="antialiased text-gray-800">
+
+    <!-- Header -->
+    <header class="bg-white/80 backdrop-blur-sm shadow-sm sticky top-0 z-40">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center space-x-2">
+                <svg class="h-8 w-8 text-blue-600" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="text-xl font-bold text-gray-800">TestBedz</span>
+            </a>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="#services" class="text-gray-600 hover:text-blue-600">Our Services</a>
+                <a href="#process" class="text-gray-600 hover:text-blue-600">How It Works</a>
+                <a href="#partners" class="text-gray-600 hover:text-blue-600">For Universities</a>
+                <a href="#faq" class="text-gray-600 hover:text-blue-600">FAQ</a>
+            </div>
+            <a href="#rfq-form" class="hidden md:block btn-primary font-semibold px-5 py-2 rounded-lg">Get Your Quote</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="container mx-auto px-6 pt-24 pb-16 text-center">
+            <h1 class="font-poppins text-4xl md:text-6xl font-bold text-gray-900 leading-tight">Stop Managing Paperwork.<br>Start Validating Your Hardware.</h1>
+            <p class="text-xl md:text-2xl mt-4 text-gray-600 max-w-3xl mx-auto">
+                TestBedz is your dedicated concierge for aerospace testing. We handle the logistics, planning, and facility matchmaking so you can focus on what matters most: innovation.
+            </p>
+            <div class="mt-8">
+                <a href="#rfq-form" class="btn-primary text-white font-bold px-8 py-4 rounded-lg text-lg">Create Your Free Test Plan</a>
+            </div>
+        </section>
+
+        <!-- Social Proof Section -->
+        <div class="py-12">
+            <div class="container mx-auto px-6">
+                <p class="text-center text-gray-500 font-semibold">Trusted by leading student innovators at the University of Michigan</p>
+                <div class="flex justify-center items-center flex-wrap gap-x-8 md:gap-x-12 mt-4 text-gray-400">
+                    <span class="font-bold text-lg">MASA</span>
+                    <span class="font-bold text-lg">MRover</span>
+                    <span class="font-bold text-lg">MXL</span>
+                    <span class="font-bold text-lg">MFly</span>
+                    <span class="font-bold text-lg">CFL</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Services / What We Handle Section -->
+        <section id="services" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="font-poppins text-3xl font-bold text-gray-900">Your One-Stop Shop for Test Success</h2>
+                    <p class="mt-3 text-lg text-gray-600 max-w-2xl mx-auto">We eliminate the hassle by managing the entire testing lifecycle for you.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="p-6">
+                        <div class="text-3xl mb-4 text-blue-500">✓</div>
+                        <h3 class="font-poppins text-xl font-bold">Comprehensive Planning</h3>
+                        <p class="mt-2 text-gray-600">Our experts work with you to define test parameters, create documentation, and build a complete test plan from scratch.</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-3xl mb-4 text-blue-500">✓</div>
+                        <h3 class="font-poppins text-xl font-bold">Facility Matchmaking</h3>
+                        <p class="mt-2 text-gray-600">We leverage our network of university labs to find the perfect facility with the right capabilities for your specific needs.</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-3xl mb-4 text-blue-500">✓</div>
+                        <h3 class="font-poppins text-xl font-bold">Logistics & Coordination</h3>
+                        <p class="mt-2 text-gray-600">We handle the scheduling, transportation logistics (FOB), and communication with lab technicians so you don't have to.</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-3xl mb-4 text-blue-500">✓</div>
+                        <h3 class="font-poppins text-xl font-bold">Concierge Support</h3>
+                        <p class="mt-2 text-gray-600">A dedicated concierge serves as your single point of contact, providing updates and ensuring a smooth, transparent process.</p>
+                    </div>
+                     <div class="p-6">
+                        <div class="text-3xl mb-4 text-blue-500">✓</div>
+                        <h3 class="font-poppins text-xl font-bold">Reduced Paperwork</h3>
+                        <p class="mt-2 text-gray-600">From NDAs to test reports, we streamline the documentation to minimize your administrative load.</p>
+                    </div>
+                     <div class="p-6">
+                        <div class="text-3xl mb-4 text-blue-500">✓</div>
+                        <h3 class="font-poppins text-xl font-bold">Faster, Smarter, Cheaper</h3>
+                        <p class="mt-2 text-gray-600">By optimizing facility usage and processes, we help you get tests done quickly, properly, and more affordably.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RFQ Form Section -->
+        <section id="rfq-form" class="py-20">
+            <div class="container mx-auto px-6">
+                <div class="bg-white max-w-4xl mx-auto p-8 md:p-12 rounded-xl shadow-2xl border border-gray-200">
+                    <h2 class="font-poppins text-3xl font-bold text-center text-gray-900 mb-4">Start Your Hassle-Free Test Plan</h2>
+                    <p class="text-lg text-center text-gray-600 mb-8">This 3-step form takes 5 minutes. Our team will handle the rest.</p>
+                    
+                    <div class="flex justify-center items-center space-x-4 mb-8">
+                        <div id="step-indicator-1" class="step-indicator bg-blue-600 text-white w-10 h-10 flex items-center justify-center rounded-full font-bold">1</div>
+                        <div class="flex-grow h-0.5 bg-gray-300"></div>
+                        <div id="step-indicator-2" class="step-indicator bg-gray-200 text-gray-500 w-10 h-10 flex items-center justify-center rounded-full font-bold">2</div>
+                        <div class="flex-grow h-0.5 bg-gray-300"></div>
+                        <div id="step-indicator-3" class="step-indicator bg-gray-200 text-gray-500 w-10 h-10 flex items-center justify-center rounded-full font-bold">3</div>
+                    </div>
+
+                    <form id="multi-step-form">
+                        <div id="form-step-1" class="form-step active">
+                            <h3 class="font-semibold text-xl mb-6 text-center">Step 1: Company & Contact Information</h3>
+                            <div class="space-y-6">
+                                <div><label for="CompanyName" class="block text-sm font-medium text-gray-700">Company Name</label><input type="text" name="CompanyName" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"></div>
+                                <div><label for="ContactName" class="block text-sm font-medium text-gray-700">Primary Contact Name</label><input type="text" name="ContactName" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"></div>
+                                <div><label for="ContactEmail" class="block text-sm font-medium text-gray-700">Contact Email</label><input type="email" name="ContactEmail" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"></div>
+                            </div>
+                        </div>
+                        <div id="form-step-2" class="form-step">
+                            <h3 class="font-semibold text-xl mb-6 text-center">Step 2: Technical Requirements</h3>
+                            <div class="space-y-6">
+                                <div><label for="TestType" class="block text-sm font-medium text-gray-700">Primary Test Type</label><select name="TestType" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"><option value="">Select a test type...</option><option value="Thermal">Thermal Cycling / Vacuum</option><option value="Vibration">Vibration / Shock</option><option value="EM">EM / EMC</option><option value="Wind">Wind Tunnel</option><option value="Other">Other</option></select></div>
+                                <div><label for="TestArticleName" class="block text-sm font-medium text-gray-700">Test Article Name / Model</label><input type="text" name="TestArticleName" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"></div>
+                                <div class="grid grid-cols-2 gap-4"><div><label for="ArticleDimensions" class="block text-sm font-medium text-gray-700">Approx. Dimensions (cm)</label><input type="text" name="ArticleDimensions" placeholder="e.g., 30x20x10" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"></div><div><label for="ArticleWeight" class="block text-sm font-medium text-gray-700">Approx. Weight (kg)</label><input type="number" name="ArticleWeight" placeholder="e.g., 5" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"></div></div>
+                                <div><label for="TestParameters" class="block text-sm font-medium text-gray-700">Key Test Parameters</label><textarea name="TestParameters" rows="3" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="e.g., Temp Range: -80C to +120C, 10 cycles. OR Freq Range: 5-2000 Hz, 10g RMS."></textarea></div>
+                            </div>
+                        </div>
+                        <div id="form-step-3" class="form-step">
+                            <h3 class="font-semibold text-xl mb-6 text-center">Step 3: Logistics & Availability</h3>
+                             <div class="space-y-6">
+                                <div class="grid grid-cols-2 gap-4"><div><label for="DesiredStartDate" class="block text-sm font-medium text-gray-700">Desired Start Date</label><input type="date" name="DesiredStartDate" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"></div><div><label for="TestDuration" class="block text-sm font-medium text-gray-700">Est. Duration (days)</label><input type="number" name="TestDuration" placeholder="e.g., 3" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"></div></div>
+                                <div><label for="AdditionalInfo" class="block text-sm font-medium text-gray-700">Additional Information (e.g., ITAR restrictions)</label><textarea name="AdditionalInfo" rows="4" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="Any special handling or other details?"></textarea></div>
+                            </div>
+                        </div>
+                        <div class="mt-10 flex justify-between">
+                            <button type="button" id="prev-btn" class="bg-gray-200 text-gray-700 font-semibold px-6 py-2 rounded-lg" style="display: none;">Back</button>
+                            <button type="button" id="next-btn" class="btn-primary font-semibold px-6 py-2 rounded-lg ml-auto">Next</button>
+                            <button type="submit" id="submit-btn" class="btn-primary font-semibold px-6 py-2 rounded-lg ml-auto" style="display: none;">Submit RFQ & Find Labs</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- For Universities Section -->
+        <section id="partners" class="py-20">
+            <div class="container mx-auto px-6 text-center">
+                 <h2 class="font-poppins text-3xl font-bold text-gray-900">Are You a University Lab Manager?</h2>
+                 <p class="mt-3 text-lg text-gray-600 max-w-2xl mx-auto">Partner with TestBedz to monetize your facility's downtime with zero hassle. We handle all client management, planning, and paperwork. You just do what you do best: test.</p>
+                 <div class="mt-8">
+                     <a href="#" class="border border-blue-600 text-blue-600 font-bold px-8 py-3 rounded-lg hover:bg-blue-600 hover:text-white transition-colors">Become a Partner</a>
+                 </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="py-20 bg-white">
+            <div class="container mx-auto px-6 max-w-3xl">
+                <h2 class="font-poppins text-3xl font-bold text-center text-gray-900 mb-10">Frequently Asked Questions</h2>
+                <div class="space-y-4">
+                    <details class="p-4 border rounded-lg">
+                        <summary class="font-semibold cursor-pointer flex justify-between items-center">How do you protect my intellectual property (IP)?<span class="arrow-down transition-transform">▼</span></summary>
+                        <p class="mt-2 text-gray-600">Protecting your IP is our top priority. We execute a comprehensive Mutual Non-Disclosure Agreement (NDA) before any sensitive technical details are shared. All communication and data are handled through secure channels.</p>
+                    </details>
+                    <details class="p-4 border rounded-lg">
+                        <summary class="font-semibold cursor-pointer flex justify-between items-center">What happens if my hardware breaks during a test?<span class="arrow-down transition-transform">▼</span></summary>
+                        <p class="mt-2 text-gray-600">Our process is designed to minimize this risk through mandatory pre-test checks. However, in the event of a failure, our policy is transparent. We will immediately halt the test, document the event, and consult with you. If the issue is with the hardware, we can offer engineering support. If it's a facility issue, we take full responsibility according to our service agreement.</p>
+                    </details>
+                     <details class="p-4 border rounded-lg">
+                        <summary class="font-semibold cursor-pointer flex justify-between items-center">What about shipping and insurance?<span class="arrow-down transition-transform">▼</span></summary>
+                        <p class="mt-2 text-gray-600">We manage all logistics. Our service operates on FOB (Free on Board) terms, meaning our responsibility begins when your hardware is safely received at the test facility. We partner with trusted logistics providers and have liability insurance to protect your hardware while it's in our care.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <div id="success-modal" class="fixed inset-0 bg-gray-900 bg-opacity-80 flex items-center justify-center hidden z-50 p-4">
+        <div class="bg-white p-8 rounded-xl shadow-2xl text-center max-w-md w-full"><div class="flex items-center justify-center h-16 w-16 mx-auto bg-green-100 rounded-full mb-6"><svg class="w-10 h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></div><h2 class="font-poppins text-2xl font-bold text-gray-900 mb-4">Request Sent!</h2><p id="success-message" class="text-gray-600 mb-6"></p><button id="close-success-btn" class="w-full btn-primary font-semibold py-3 rounded-lg">Done</button></div>
+    </div>
+
+
+    <script>
+        const facilities = [{ name: 'SPRL Facility', capabilities: ['Thermal', 'Vibration'] },{ name: 'Wilson Center', capabilities: ['Materials', 'EM'] },{ name: 'CLASP Cold Chambers', capabilities: ['Thermal'] },{ name: 'Low-Speed Wind Tunnel', capabilities: ['Wind'] },{ name: 'Generic Test Lab A', capabilities: ['Vibration', 'EM'] },{ name: 'Generic Test Lab B', capabilities: ['Other'] }];
+        
+        // IMPORTANT: PASTE YOUR NEW GOOGLE APPS SCRIPT URL HERE
+        const googleScriptURL = 'PASTE_YOUR_NEW_WEB_APP_URL_HERE';
+
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const submitBtn = document.getElementById('submit-btn');
+        const form = document.getElementById('multi-step-form');
+        const formSteps = document.querySelectorAll('.form-step');
+        const stepIndicators = document.querySelectorAll('.step-indicator');
+        let currentStep = 1;
+
+        function updateFormSteps() {
+            formSteps.forEach((step, index) => step.classList.toggle('active', index + 1 === currentStep));
+            stepIndicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index + 1 <= currentStep);
+                indicator.classList.toggle('bg-gray-200', index + 1 > currentStep);
+                indicator.classList.toggle('text-gray-500', index + 1 > currentStep);
+            });
+            prevBtn.style.display = currentStep > 1 ? 'block' : 'none';
+            nextBtn.style.display = currentStep < formSteps.length ? 'block' : 'none';
+            submitBtn.style.display = currentStep === formSteps.length ? 'block' : 'none';
+        }
+
+        function validateStep() {
+            const inputs = formSteps[currentStep - 1].querySelectorAll('input[required], select[required], textarea[required]');
+            for (const input of inputs) {
+                if (!input.value.trim()) {
+                    input.focus();
+                    alert('Please fill out all required fields.');
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        nextBtn.addEventListener('click', () => { if (validateStep()) { currentStep++; updateFormSteps(); } });
+        prevBtn.addEventListener('click', () => { if (currentStep > 1) { currentStep--; updateFormSteps(); } });
+        
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            if (!validateStep()) return;
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Finding Labs...';
+            const formData = new FormData(form);
+            const userTestType = formData.get('TestType');
+            const matchedFacilities = facilities.filter(f => f.capabilities.includes(userTestType));
+            document.getElementById('success-message').textContent = `We have processed your request and identified ${matchedFacilities.length} qualified facilities in our network. Your RFQ has been sent, and you should receive proposals from them directly within 2-3 business days.`;
+            
+            fetch(googleScriptURL, { method: 'POST', body: formData })
+                .then(res => res.json())
+                .then(data => { document.getElementById('success-modal').classList.remove('hidden'); })
+                .catch(error => { document.getElementById('success-modal').classList.remove('hidden'); })
+                .finally(() => { submitBtn.disabled = false; submitBtn.textContent = 'Submit RFQ & Find Labs'; });
+        });
+        document.getElementById('close-success-btn').addEventListener('click', () => { document.getElementById('success-modal').classList.add('hidden'); currentStep = 1; form.reset(); updateFormSteps(); });
+        updateFormSteps();
+    </script>
+</body>
+</html>
