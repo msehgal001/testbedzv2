@@ -270,14 +270,33 @@
 
             function handleInitialSignup(e) {
                 e.preventDefault();
-                const allInputs = signupForm.querySelectorAll('input[required], textarea[required], select[required]');
-                for (const input of allInputs) {
-                    if (!input.value.trim()) {
-                        showMessage('Incomplete Form', `Please fill out all required fields.`);
-                        return;
+                const signupFormSteps = document.querySelectorAll('#signup-form .form-step');
+                
+                // New, robust validation
+                for (let i = 0; i < signupFormSteps.length; i++) {
+                    const step = signupFormSteps[i];
+                    const inputs = step.querySelectorAll('input[required], textarea[required], select[required]');
+                    for (const input of inputs) {
+                        if (!input.value.trim()) {
+                            // Deactivate all steps
+                            signupFormSteps.forEach(s => s.classList.remove('active'));
+                            // Activate the step with the error
+                            step.classList.add('active');
+                            currentSignupStep = i + 1; // Update global state
+
+                            // Manage button visibility for the corrected step
+                            document.getElementById('prev-btn').style.display = currentSignupStep > 1 ? 'block' : 'none';
+                            document.getElementById('next-btn').style.display = currentSignupStep < signupFormSteps.length ? 'block' : 'none';
+                            document.getElementById('submit-btn').style.display = currentSignupStep === signupFormSteps.length ? 'block' : 'none';
+                            
+                            showMessage('Incomplete Form', `Please complete all required fields on Step ${currentSignupStep}.`);
+                            input.focus(); // Focus on the problematic input
+                            return; // Stop the submission
+                        }
                     }
                 }
 
+                // If the loop completes, the form is valid. Proceed with submission.
                 const formData = new FormData(signupForm);
                 const primaryDetails = Object.fromEntries(formData.entries());
                 
