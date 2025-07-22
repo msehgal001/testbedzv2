@@ -33,12 +33,16 @@
     .faq-answer.open { max-height: 500px; padding-top: 1rem; padding-bottom: 1.5rem; }
 
     .hidden { display: none !important; }
+
+    /* Added for new tooltips */
+    .tooltip { position: relative; display: inline-block; cursor: pointer; }
+    .tooltip .tooltiptext { visibility: hidden; width: 220px; background-color: #1f2937; color: #fff; text-align: center; border-radius: 6px; padding: 5px; position: absolute; z-index: 1; bottom: 125%; left: 50%; margin-left: -110px; opacity: 0; transition: opacity 0.3s; font-size: 0.75rem; font-weight: normal; }
+    .tooltip:hover .tooltiptext { visibility: visible; opacity: 1; }
   </style>
 </head>
 <body class="antialiased text-gray-800">
   <div id="app-container">
 
-    <!-- ================= PUBLIC (logged out) ================= -->
     <div id="public-page" class="page active">
       <header class="bg-white/80 backdrop-blur-sm shadow-sm sticky top-0 z-40">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
@@ -61,7 +65,6 @@
       </header>
 
       <main>
-        <!-- HOME -->
         <div id="home-content" class="public-section active">
           <section class="container mx-auto px-6 pt-24 pb-16 text-center">
             <h1 class="font-poppins text-4xl md:text-6xl font-bold text-gray-900 leading-tight">Your End-to-End Testing Partner.</h1>
@@ -71,7 +74,6 @@
             </div>
           </section>
 
-          <!-- RFQ / SIGNUP -->
           <section id="rfq-form" class="py-20">
             <div class="container mx-auto px-6">
               <div class="bg-white max-w-4xl mx-auto p-8 md:p-12 rounded-xl shadow-2xl border border-gray-200">
@@ -79,7 +81,6 @@
                 <p class="text-lg text-center text-gray-600 mb-8">Create your Project Ticket!</p>
 
                 <form id="signup-form">
-                  <!-- STEP 1 -->
                   <div class="form-step active">
                     <h3 class="font-semibold text-xl mb-6 text-center">Step 1: Company & Contact</h3>
                     <div class="space-y-6">
@@ -102,7 +103,6 @@
                     </div>
                   </div>
 
-                  <!-- STEP 2 -->
                   <div class="form-step">
                     <h3 class="font-semibold text-xl mb-6 text-center">Step 2: Primary Test Needs</h3>
                     <div class="space-y-6">
@@ -137,7 +137,6 @@
                     </div>
                   </div>
 
-                  <!-- STEP 3 -->
                   <div class="form-step">
                     <h3 class="font-semibold text-xl mb-6 text-center">Step 3: Asset & Schedule</h3>
                     <div class="space-y-6">
@@ -169,7 +168,6 @@
                     </div>
                   </div>
 
-                  <!-- STEP 4 -->
                   <div class="form-step">
                     <h3 class="font-semibold text-xl mb-6 text-center">Step 4: Create Your Secure Account</h3>
                     <div class="space-y-6">
@@ -195,7 +193,6 @@
           </section>
         </div>
 
-        <!-- FAQ -->
         <div id="faq-content" class="public-section">
           <section class="py-20">
             <div class="container mx-auto px-6">
@@ -237,7 +234,6 @@
           </section>
         </div>
 
-        <!-- RESOURCES -->
         <div id="resources-content" class="public-section">
           <section class="py-20">
             <div class="container mx-auto px-6">
@@ -278,10 +274,8 @@
       </main>
     </div>
 
-    <!-- ================= DASHBOARD (logged in) ================= -->
     <div id="dashboard-page" class="page">
       <div class="flex h-screen bg-gray-100">
-        <!-- Sidebar -->
         <div class="hidden md:flex flex-col w-64 bg-white shadow-lg">
           <div class="flex items-center justify-center h-20 border-b">
             <div class="flex items-center space-x-2">
@@ -313,11 +307,9 @@
           </div>
         </div>
 
-        <!-- Main -->
         <div class="flex-1 flex flex-col overflow-hidden">
           <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-100 p-6">
 
-            <!-- Campaign list -->
             <div id="dashboard-view" class="view active">
               <div class="flex justify-between items-center mb-6">
                 <h1 class="font-poppins text-3xl font-bold text-gray-900">Your Test Campaigns</h1>
@@ -328,7 +320,6 @@
               </div>
             </div>
 
-            <!-- Campaign detail -->
             <div id="campaign-detail-view" class="view">
               <button id="back-to-dashboard-btn" class="font-semibold text-blue-600 mb-6">← Back to All Campaigns</button>
               <div class="flex justify-between items-start">
@@ -344,7 +335,6 @@
               </div>
             </div>
 
-            <!-- Calendar -->
             <div id="calendar-view" class="view">
               <h1 class="font-poppins text-3xl font-bold text-gray-900">Facility Calendar</h1>
               <p class="text-lg text-gray-600 mt-2">View high-level availability for your matched testing facilities.</p>
@@ -358,7 +348,6 @@
       </div>
     </div>
 
-    <!-- ===================== Modals ===================== -->
     <div id="login-modal" class="fixed inset-0 bg-gray-900 bg-opacity-80 flex items-center justify-center hidden z-50 p-4">
       <div class="bg-white p-8 rounded-xl shadow-2xl text-center max-w-sm w-full relative">
         <button id="close-login-modal-btn" class="absolute top-2 right-4 text-2xl text-gray-500 hover:text-gray-800">&times;</button>
@@ -422,151 +411,17 @@
       </div>
     </div>
 
-    <!-- ===================== Field Templates ===================== -->
     <div id="field-templates" class="hidden">
-      <div id="standards-step" class="space-y-4">
-        <div>
-          <label class="block text-sm font-medium text-gray-700">Relevant Standard</label>
-          <p class="text-xs text-gray-500">Selecting a standard helps us auto-populate test parameters later.</p>
-          <select name="Standard" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
-            <option value="Other">Other / N/A / I'm not sure</option>
-            <option value="GEVS">GEVS (NASA Standard)</option>
-            <option value="MIL-STD">MIL-STD (Military Standard)</option>
-          </select>
-        </div>
-        <div>
-          <label class="block text-sm font-medium text-gray-700">Test Type</label>
-          <select name="TestType" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required>
-            <option value="">Select a test...</option>
-            <option value="Vibration">Vibration</option>
-            <option value="Thermal">Thermal</option>
-            <option value="Shock">Shock</option>
-            <option value="Vacuum">Vacuum</option>
-            <option value="EMI/EMC">EMI/EMC</option>
-            <option value="NDT">NDT</option>
-            <option value="Wind Tunnel">Wind Tunnel</option>
-          </select>
-        </div>
-      </div>
-
-      <div id="Vibration-fields" class="space-y-4">
-        <div>
-          <label class="block text-sm font-medium">Mounting Plan & Interface Drawing</label>
-          <textarea name="MountingPlan" class="mt-1 w-full border-gray-300 rounded-md" rows="2" placeholder="How will the device be mounted? Do you have a custom fixture?"></textarea>
-          <input type="file" class="mt-2 text-sm">
-        </div>
-        <div>
-          <label class="block text-sm font-medium">External Accelerometers</label>
-          <input type="text" name="Accelerometers" class="mt-1 w-full border-gray-300 rounded-md" placeholder="How many are needed and what are their precise locations?">
-        </div>
-        <div>
-          <label class="block text-sm font-medium">Test Axes</label>
-          <input type="text" name="TestAxes" class="mt-1 w-full border-gray-300 rounded-md" placeholder="e.g., X, Y, and Z">
-        </div>
-      </div>
-
-      <div id="Thermal-fields" class="space-y-4">
-        <div>
-          <label class="block text-sm font-medium">Test Type</label>
-          <select name="ThermalType" class="mt-1 w-full border-gray-300 rounded-md"><option>Operational</option><option>Survival</option></select>
-        </div>
-        <div>
-          <label class="block text sm font-medium">Number of Cycles</label>
-          <input type="number" name="Cycles" class="mt-1 w-full border-gray-300 rounded-md" placeholder="e.g., 1 for survival, 8 for operational">
-        </div>
-        <div>
-          <label class="block text-sm font-medium">Temperature Range (°C)</label>
-          <input type="text" name="TempRange" class="mt-1 w-full border-gray-300 rounded-md" placeholder="e.g., -80 to +120">
-        </div>
-        <div>
-          <label class="block text-sm font-medium">Dwell Time (hours)</label>
-          <input type="number" name="DwellTime" class="mt-1 w-full border-gray-300 rounded-md" placeholder="e.g., 2">
-        </div>
-        <div>
-          <label class="block text-sm font-medium">Thermocouples</label>
-          <div class="grid grid-cols-2 gap-4">
-            <input type="number" name="TC_Count" class="mt-1 w-full border-gray-300 rounded-md" placeholder="# of spots">
-            <select name="TC_Type" class="mt-1 w-full border-gray-300 rounded-md"><option>Attached</option><option>Free</option></select>
-          </div>
-        </div>
-        <div>
-          <label class="block text-sm font-medium">Interface (Power Wires & Data Signals)</label>
-          <input type="text" name="Interface" class="mt-1 w-full border-gray-300 rounded-md" placeholder="e.g., 28V DC @ 2A, RS-422 for telemetry, # of wire signals">
-        </div>
-        <div>
-          <label class="block text-sm font-medium">Temperature Tracking</label>
-          <select name="TempTracking" class="mt-1 w-full border-gray-300 rounded-md"><option>Automated by facility</option><option>Requires TestBedz observation</option></select>
-        </div>
-      </div>
-
-      <div id="Shock-fields" class="space-y-4">
-        <div>
-          <label class="block text-sm font-medium">Shock Response Spectrum (SRS)</label>
-          <input name="SRS_File" type="file" class="mt-1 w-full text-sm">
-        </div>
-        <div>
-          <label class="block text-sm font-medium">Number of Shocks per Axis</label>
-          <input name="ShockCount" type="number" class="mt-1 w-full border-gray-300 rounded-md" placeholder="e.g., 3">
-        </div>
-      </div>
-
-      <div id="Vacuum-fields" class="space-y-4">
-        <div>
-          <label class="block text-sm font-medium">Target Pressure (Torr)</label>
-          <input name="TargetPressure" type="text" class="mt-1 w-full border-gray-300 rounded-md" placeholder="e.g., 1x10^-6 Torr">
-        </div>
-        <div>
-          <label class="block text-sm font-medium">Pump-down Time Requirement (hours)</label>
-          <input name="PumpDownTime" type="number" class="mt-1 w-full border-gray-300 rounded-md">
-        </div>
-      </div>
-
-      <div id="EMIEMC-fields" class="space-y-4">
-        <div>
-          <label class="block text-sm font-medium">Modes of Operation During Test</label>
-          <input name="OperationModes" type="text" class="mt-1 w-full border-gray-300 rounded-md" placeholder="e.g., Standby, Full Power Transmit">
-        </div>
-        <div>
-          <label class="block text-sm font-medium">Power Requirements</label>
-          <input name="PowerReqs" type="text" class="mt-1 w-full border-gray-300 rounded-md" placeholder="e.g., 28V DC, 5A peak">
-        </div>
-        <div>
-          <label class="block text-sm font-medium">Testing Objective</label>
-          <select name="EMI_Objective" class="mt-1 w-full border-gray-300 rounded-md">
-            <option>Radiated Emissions</option>
-            <option>Conducted Emissions</option>
-            <option>Radiated Immunity</option>
-            <option>Conducted Immunity</option>
-            <option>ESD Immunity</option>
-          </select>
-        </div>
-      </div>
-
-      <div id="NDT-fields" class="space-y-4">
-        <div>
-          <label class="block text-sm font-medium">Primary Objective</label>
-          <input name="NDT_Objective" type="text" class="mt-1 w-full border-gray-300 rounded-md" placeholder="e.g., Detect internal voids, check weld integrity">
-        </div>
-        <div>
-          <label class="block text-sm font-medium">Material(s)</label>
-          <input name="Materials" type="text" class="mt-1 w-full border-gray-300 rounded-md" placeholder="e.g., Carbon Fiber Composite, Aluminum 6061">
-        </div>
-      </div>
-
-      <div id="WindTunnel-fields" class="space-y-4">
-        <div>
-          <label class="block text-sm font-medium">Desired Wind Speed Sweep (mph)</label>
-          <input name="WindSpeed" type="text" class="mt-1 w-full border-gray-300 rounded-md" placeholder="e.g., 0 to 150">
-        </div>
-        <div>
-          <label class="block text-sm font-medium">Desired Angle of Attack Sweep (°)</label>
-          <input name="AoA" type="text" class="mt-1 w-full border-gray-300 rounded-md" placeholder="e.g., -5 to 20">
-        </div>
-      </div>
+        <div id="standards-step" class="space-y-4"><div><label class="block text-sm font-medium text-gray-700">Relevant Standard</label><p class="text-xs text-gray-500">Selecting a standard helps us auto-populate test parameters later.</p><select id="test-standard-select" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm"><option value="Other">Other / N/A / I'm not sure</option><option value="GEVS">GEVS (NASA Standard)</option><option value="MIL-STD">MIL-STD (Military Standard)</option></select></div><div><label class="block text-sm font-medium text-gray-700">Test Type</label><select id="new-test-type-select" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm" required><option value="">Select a test...</option><option value="Vibration">Vibration</option><option value="Thermal">Thermal</option><option value="Vacuum">Vacuum</option><option value="EMI/EMC">EMI/EMC</option><option value="NDT">NDT</option><option value="Wind Tunnel">Wind Tunnel</option></select></div></div>
+        <div id="Vibration-fields" class="space-y-4"><div><label class="block text-sm font-medium">Mounting Plan & Interface Drawing</label><textarea class="mt-1 w-full border-gray-300 rounded-md" rows="2" placeholder="How will the device be mounted? Do you have a custom fixture?"></textarea><input type="file" class="mt-2 text-sm"></div><div><label class="block text-sm font-medium">External Accelerometers</label><input type="text" class="mt-1 w-full border-gray-300 rounded-md" placeholder="How many are needed and what are their precise locations?"></div><div><label class="block text-sm font-medium">Test Axes</label><input type="text" class="mt-1 w-full border-gray-300 rounded-md" placeholder="e.g., X, Y, and Z"></div></div>
+        <div id="Thermal-fields" class="space-y-4"><div><label class="block text-sm font-medium">Test Type</label><select class="mt-1 w-full border-gray-300 rounded-md"><option>Operational</option><option>Survival</option></select></div><div><label class="block text-sm font-medium">Number of Cycles</label><input type="number" class="mt-1 w-full border-gray-300 rounded-md" placeholder="e.g., 1 for survival, 8 for operational"></div><div><label class="block text-sm font-medium">Temperature Range (°C)</label><input type="text" class="mt-1 w-full border-gray-300 rounded-md" placeholder="e.g., -80 to +120"></div><div><label class="block text-sm font-medium">Dwell Time (hours)</label><input type="number" class="mt-1 w-full border-gray-300 rounded-md" placeholder="e.g., 2"></div><div><label class="block text-sm font-medium">Thermocouples</label><div class="grid grid-cols-2 gap-4"><input type="number" class="mt-1 w-full border-gray-300 rounded-md" placeholder="# of spots"><select class="mt-1 w-full border-gray-300 rounded-md"><option>Attached</option><option>Free</option></select></div></div><div><label class="block text-sm font-medium">Interface (Power Wires & Data Signals)</label><input type="text" class="mt-1 w-full border-gray-300 rounded-md" placeholder="e.g., 28V DC @ 2A, RS-422 for telemetry, # of wire signals"></div><div><label class="block text-sm font-medium">Temperature Tracking</label><select class="mt-1 w-full border-gray-300 rounded-md"><option>Automated by facility</option><option>Requires TestBedz observation</option></select></div></div>
+        <div id="Vacuum-fields" class="space-y-4"><div><label class="block text-sm font-medium">Target Pressure (Torr)</label><input type="text" class="mt-1 w-full border-gray-300 rounded-md" placeholder="e.g., 1x10^-6 Torr"></div><div><label class="block text-sm font-medium">Pump-down Time Requirement (hours)</label><input type="number" class="mt-1 w-full border-gray-300 rounded-md"></div></div>
+        <div id="EMIEMC-fields" class="space-y-4"><div><label class="block text-sm font-medium">Modes of Operation During Test</label><input type="text" class="mt-1 w-full border-gray-300 rounded-md" placeholder="e.g., Standby, Full Power Transmit"></div><div><label class="block text-sm font-medium">Power Requirements</label><input type="text" class="mt-1 w-full border-gray-300 rounded-md" placeholder="e.g., 28V DC, 5A peak"></div><div><label class="block text-sm font-medium">Testing Objective</label><select class="mt-1 w-full border-gray-300 rounded-md"><option>Radiated Emissions</option><option>Conducted Emissions</option><option>Radiated Immunity</option><option>Conducted Immunity</option><option>ESD Immunity</option></select></div></div>
+        <div id="NDT-fields" class="space-y-4"><div><label class="block text-sm font-medium">Primary Objective</label><input type="text" class="mt-1 w-full border-gray-300 rounded-md" placeholder="e.g., Detect internal voids, check weld integrity"></div><div><label class="block text-sm font-medium">Material(s)</label><input type="text" class="mt-1 w-full border-gray-300 rounded-md" placeholder="e.g., Carbon Fiber Composite, Aluminum 6061"></div></div>
+        <div id="WindTunnel-fields" class="space-y-4"><div><label class="block text-sm font-medium">Desired Wind Speed Sweep (mph)</label><input type="text" class="mt-1 w-full border-gray-300 rounded-md" placeholder="e.g., 0 to 150"></div><div><label class="block text-sm font-medium">Desired Angle of Attack Sweep (°)</label><input type="text" class="mt-1 w-full border-gray-300 rounded-md" placeholder="e.g., -5 to 20"></div></div>
     </div>
   </div>
 
-  <!-- ===================== SCRIPT ===================== -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       /* ---------- MOCK DB ---------- */
@@ -612,6 +467,15 @@
       const logoutBtn = document.getElementById('logout-btn');
       const dashboardNavItems = document.querySelectorAll('#dashboard-page .nav-item');
       const faqContainer = document.getElementById('faq-content');
+      const showNewCampaignModalBtn = document.getElementById('show-new-campaign-modal-btn');
+      const showAddTestModalBtn = document.getElementById('show-add-test-modal-btn');
+      const backToDashboardBtn = document.getElementById('back-to-dashboard-btn');
+      const closeMessageBtn = document.getElementById('close-message-btn');
+      const closeLoginModalBtn = document.getElementById('close-login-modal-btn');
+      const closeNewCampaignModalBtn = document.getElementById('close-new-campaign-modal-btn');
+      const closeAddTestModalBtn = document.getElementById('close-add-test-modal-btn');
+      const proceedToDashboardBtn = document.getElementById('proceed-to-dashboard-btn');
+
 
       const signupFormSteps = document.querySelectorAll('#signup-form .form-step');
       let currentSignupStep = 1;
@@ -738,13 +602,6 @@
           saveCampaigns();
 
           sessionStorage.setItem('newlyMatchedFacilityId', matchedFacility.id);
-          // Skip modal if it causes issue:
-          // showMessage('Account Created!', 'You will now be logged in.');
-          // setTimeout(() => {
-          //   hideModal(messageModal);
-          //   handleLogin({ preventDefault: () => {} });
-          // }, 1200);
-
           handleLogin({preventDefault:()=>{}});
         }catch(err){
           console.error('Signup error', err);
@@ -770,27 +627,35 @@
         hideModal(newCampaignModal);
       }
 
+      // NEW function to handle the new form structure
       function handleAddTest(e) {
         e.preventDefault();
         if (!currentCampaignId) return;
         const campaign = mockCampaigns.find(c => c.id === currentCampaignId);
         if (!campaign) return;
 
-        const formData = new FormData(addTestForm);
-        const testType = formData.get('TestType');
+        const testType = addTestForm.querySelector('#new-test-type-select').value;
         if (!testType) {
-          showMessage('Error', 'Please select a test type.');
-          return;
+            showMessage('Error', 'Please select a test type.');
+            return;
         }
 
-        const details = Object.fromEntries(formData.entries());
-        campaign.tests.push({ type: testType, details });
-        campaign.status = 'Facility Matching';
-        saveCampaigns();
+        const details = {};
+        const inputs = addTestForm.querySelectorAll('.specific-fields input, .specific-fields select, .specific-fields textarea');
+        inputs.forEach(input => {
+            const label = input.closest('div').querySelector('label');
+            if (label) {
+                // Use the label text as the key for the details object
+                details[label.textContent.replace('ⓘ','').trim()] = input.value || 'N/A';
+            }
+        });
+        details['Standard'] = addTestForm.querySelector('#test-standard-select').value;
 
+        campaign.tests.push({ type: testType, details: details });
+        campaign.status = "Facility Matching";
         renderTestsForCampaign(campaign.id);
         hideModal(addTestModal);
-        showMessage('Test Added', `A new ${testType} test has been added to your campaign.`);
+        showMessage('Test Added', `A new ${testType} test has been added. We are now matching you with qualified facilities.`);
 
         const statusBadge = document.getElementById('detail-campaign-status');
         statusBadge.textContent = campaign.status;
@@ -860,30 +725,31 @@
         });
       }
 
+      // NEW function to set up the new form
       function setupAddTestForm() {
         addTestForm.reset();
         const addTestFormStepsContainer = document.getElementById('add-test-form-steps');
-        addTestFormStepsContainer.innerHTML = '';
-
         const standardsStep = document.getElementById('standards-step').cloneNode(true);
+        addTestFormStepsContainer.innerHTML = '';
         addTestFormStepsContainer.appendChild(standardsStep);
 
-        const testTypeSelector = addTestFormStepsContainer.querySelector('select[name="TestType"]');
-        testTypeSelector.addEventListener('change', (e) => {
-          const oldFields = addTestFormStepsContainer.querySelector('.specific-fields-container');
-          if (oldFields) oldFields.remove();
-          const testType = e.target.value;
-          const templateId = `${testType.replace(/\\s|\\//g, '')}-fields`;
-          const template = document.getElementById(templateId);
-          if (template) {
-            const newFieldsContainer = document.createElement('div');
-            newFieldsContainer.className = 'specific-fields-container space-y-4 pt-6 mt-6 border-t';
-            const newFields = template.cloneNode(true);
-            newFieldsContainer.appendChild(newFields);
-            addTestFormStepsContainer.appendChild(newFieldsContainer);
-          }
-        });
+        addTestFormStepsContainer.querySelector('#new-test-type-select').addEventListener('change', (e) => {
+            const testType = e.target.value.replace(/\s|\//g, '');
+            const templateId = `${testType}-fields`;
+            const template = document.getElementById(templateId);
 
+            const oldFields = addTestFormStepsContainer.querySelector('.specific-fields');
+            if(oldFields) oldFields.remove();
+
+            if (template) {
+                const newFields = document.createElement('div');
+                newFields.className = 'specific-fields space-y-4 pt-6 mt-6 border-t';
+                newFields.innerHTML = template.innerHTML;
+                // Add the safety/materials section to every test type
+                newFields.innerHTML += `<div class="pt-4 mt-4 border-t"><label class="block text-sm font-medium text-red-700">Safety & Materials<span class="tooltip">ⓘ<span class="tooltiptext">List all materials used. Note any potential for outgassing (e.g., foams, adhesives). This is critical for vacuum tests.</span></span></label><textarea class="mt-1 w-full border-gray-300 rounded-md" rows="2" placeholder="e.g., Aluminum 6061, Kapton tape, Stycast 2850FT..." required></textarea></div>`;
+                addTestFormStepsContainer.appendChild(newFields);
+            }
+        });
         showModal(addTestModal);
       }
 
@@ -937,12 +803,12 @@
         e.preventDefault();
         showPublicSection('home-content');
         setTimeout(() => document.getElementById('rfq-form').scrollIntoView({ behavior: 'smooth' }), 100);
-      });
+      }));
 
       dashboardNavItems.forEach(item => item.addEventListener('click', (e) => {
         e.preventDefault();
         showDashboardView(e.currentTarget.dataset.view);
-      });
+      }));
 
       if (faqContainer) {
         faqContainer.addEventListener('click', (e) => {
@@ -963,18 +829,18 @@
       }
 
       showLoginBtn.addEventListener('click', () => showModal(loginModal));
-      document.getElementById('close-login-modal-btn').addEventListener('click', () => hideModal(loginModal));
+      closeLoginModalBtn.addEventListener('click', () => hideModal(loginModal));
       logoutBtn.addEventListener('click', handleLogout);
 
-      document.getElementById('show-new-campaign-modal-btn').addEventListener('click', () => showModal(newCampaignModal));
-      document.getElementById('close-new-campaign-modal-btn').addEventListener('click', () => hideModal(newCampaignModal));
+      showNewCampaignModalBtn.addEventListener('click', () => showModal(newCampaignModal));
+      closeNewCampaignModalBtn.addEventListener('click', () => hideModal(newCampaignModal));
 
-      document.getElementById('show-add-test-modal-btn').addEventListener('click', setupAddTestForm);
-      document.getElementById('close-add-test-modal-btn').addEventListener('click', () => hideModal(addTestModal));
+      showAddTestModalBtn.addEventListener('click', setupAddTestForm);
+      closeAddTestModalBtn.addEventListener('click', () => hideModal(addTestModal));
 
-      document.getElementById('back-to-dashboard-btn').addEventListener('click', () => showDashboardView('dashboard'));
-      document.getElementById('close-message-btn').addEventListener('click', () => hideModal(messageModal));
-      document.getElementById('proceed-to-dashboard-btn').addEventListener('click', () => hideModal(facilityIntroModal));
+      backToDashboardBtn.addEventListener('click', () => showDashboardView('dashboard'));
+      closeMessageBtn.addEventListener('click', () => hideModal(messageModal));
+      proceedToDashboardBtn.addEventListener('click', () => hideModal(facilityIntroModal));
 
       loginForm.addEventListener('submit', handleLogin);
       signupForm.addEventListener('submit', handleInitialSignup);
