@@ -349,17 +349,23 @@
       async function updateCampaignStatus(campaignId, newStatus) { const campaignRef = doc(db, "campaigns", campaignId); await updateDoc(campaignRef, { status: newStatus }); showMessage('Status Updated', `Campaign status changed to ${newStatus}.`); }
       
       onAuthStateChanged(auth, (user) => {
-        if (unsubscribeCampaigns) unsubscribeCampaigns();
+        if (unsubscribeCampaigns) {
+            unsubscribeCampaigns();
+            unsubscribeCampaigns = null;
+        }
         if (user) {
           if (user.email === 'admin@testbedz.com') {
-            listenForAllCampaigns();
             showPage('admin');
+            showAdminView('admin-dashboard');
+            listenForAllCampaigns();
           } else {
-            listenForUserCampaigns(user.uid);
             showPage('dashboard');
+            showDashboardView('dashboard');
+            listenForUserCampaigns(user.uid);
           }
         } else {
           showPage('public');
+          showPublicSection('home-content');
         }
       });
       
