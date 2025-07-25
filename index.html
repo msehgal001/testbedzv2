@@ -194,6 +194,7 @@
       </div>
     </div>
 
+    <!-- Modals -->
     <div id="login-modal" class="fixed inset-0 bg-gray-900 bg-opacity-80 flex items-center justify-center hidden z-50 p-4">
         <div class="bg-white p-8 rounded-xl shadow-2xl text-center max-w-sm w-full relative">
             <button id="close-login-modal-btn" class="absolute top-2 right-4 text-2xl text-gray-500 hover:text-gray-800">&times;</button>
@@ -348,8 +349,8 @@
       async function updateCampaignStatus(campaignId, newStatus) { const campaignRef = doc(db, "campaigns", campaignId); await updateDoc(campaignRef, { status: newStatus }); showMessage('Status Updated', `Campaign status changed to ${newStatus}.`); }
       
       onAuthStateChanged(auth, (user) => {
+        if (unsubscribeCampaigns) unsubscribeCampaigns();
         if (user) {
-          if (unsubscribeCampaigns) unsubscribeCampaigns();
           if (user.email === 'admin@testbedz.com') {
             listenForAllCampaigns();
             showPage('admin');
@@ -358,7 +359,6 @@
             showPage('dashboard');
           }
         } else {
-          if (unsubscribeCampaigns) unsubscribeCampaigns();
           showPage('public');
         }
       });
